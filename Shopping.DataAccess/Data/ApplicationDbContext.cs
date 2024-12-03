@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Shopping.Web.Models;
-
-namespace Shopping.Web.Data
+using Shopping.Entities.Models;
+namespace Shopping.DataAccess.Data
 {
     public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
     {

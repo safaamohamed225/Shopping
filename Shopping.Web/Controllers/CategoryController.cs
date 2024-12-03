@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Shopping.Web.Data;
-using Shopping.Web.Models;
+using Shopping.DataAccess.Data;
+using Shopping.Entities.Models;
 
 namespace Shopping.Web.Controllers
 {
