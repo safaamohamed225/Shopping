@@ -14,8 +14,8 @@ namespace Shopping.Web.Controllers
         }
         public IActionResult Index()
         {
-            var categories = _context.categories.ToList();
-            return View(categories);
+            //var categories = _context.categories.ToList();
+            return View(_context.categories.ToList());
         }
 
         [HttpGet]
@@ -32,6 +32,7 @@ namespace Shopping.Web.Controllers
             {
                 _context.categories.Add(category);
                 _context.SaveChanges();
+                TempData["Create"] = "Item has created successfully!";
                 return RedirectToAction("Index");
             }
             return View(category);
@@ -55,6 +56,7 @@ namespace Shopping.Web.Controllers
             {
                 _context.categories.Update(category);
                 _context.SaveChanges();
+                TempData["Update"] = "Item has updated successfully!";
                 return RedirectToAction("Index");
             }
             return View(category);
@@ -83,6 +85,7 @@ namespace Shopping.Web.Controllers
             }
             _context.categories.Remove(categoryIndb);
             _context.SaveChanges();
+            TempData["Delete"] = "Item has deleted successfully!";
             return RedirectToAction("Index");
         }
 

@@ -1,14 +1,19 @@
 ﻿@model IEnumerable<Category>;
 
-<h3>Categories Show</h3>
-<hr />
-<a class="btn btn-primary" href="/Category/Create">Add New Category</a>
+@{
+    ViewBag.PageTitle = "Category Management";
+    ViewBag.CardTitle = "View Categories";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
+}
 
+<div><a class="btn btn-primary" href="/Category/Create">Add New Category</a></div>
+<br />
 <table class="table table-hover" width="100%">
     <tr>
         <td>Name</td>
         <td>Description</td>
         <td>Created Time</td>
+        <td>Actions</td>
     </tr>
     @foreach(var item in Model)
     {
