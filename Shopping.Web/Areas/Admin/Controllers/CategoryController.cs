@@ -3,15 +3,16 @@ using Shopping.DataAccess.Data;
 using Shopping.Entities.Models;
 using Shopping.Entities.Repositories;
 
-namespace Shopping.Web.Controllers
+namespace Shopping.Web.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
 
         public CategoryController(IUnitOfWork unitOfWork)
         {
-           _unitOfWork = unitOfWork;
+            _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
         {
@@ -27,7 +28,7 @@ namespace Shopping.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Category category )
+        public IActionResult Create(Category category)
         {
             if (ModelState.IsValid)
             {
@@ -40,9 +41,9 @@ namespace Shopping.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Edit(int? id) 
+        public IActionResult Edit(int? id)
         {
-            if(id is null || id == 0)
+            if (id is null || id == 0)
             {
                 return NotFound();
             }
@@ -52,7 +53,8 @@ namespace Shopping.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Category category) {
+        public IActionResult Edit(Category category)
+        {
             if (ModelState.IsValid)
             {
                 _unitOfWork.Category.Update(category);
