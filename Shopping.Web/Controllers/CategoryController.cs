@@ -1,21 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Shopping.DataAccess.Data;
 using Shopping.Entities.Models;
+using Shopping.Entities.Repositories;
 
 namespace Shopping.Web.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public CategoryController(ApplicationDbContext context)
+        public CategoryController(IUnitOfWork unitOfWork)
         {
-            _context = context;
+           _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
         {
-            //var categories = _context.categories.ToList();
-            return View(_context.categories.ToList());
+            var categories = _unitOfWork.Category.GetAll();
+            return View(categories);
         }
 
         [HttpGet]
@@ -30,8 +31,8 @@ namespace Shopping.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.categories.Add(category);
-                _context.SaveChanges();
+                _unitOfWork.Category.Add(category);
+                _unitOfWork.Complete();
                 TempData["Create"] = "Item has created successfully!";
                 return RedirectToAction("Index");
             }
@@ -45,7 +46,7 @@ namespace Shopping.Web.Controllers
             {
                 return NotFound();
             }
-            var categoryIndb = _context.categories.Find(id);
+            var categoryIndb = _unitOfWork.Category.GetFirstOrDefault(x => x.Id == id);
             return View(categoryIndb);
         }
 
@@ -54,8 +55,8 @@ namespace Shopping.Web.Controllers
         public IActionResult Edit(Category category) {
             if (ModelState.IsValid)
             {
-                _context.categories.Update(category);
-                _context.SaveChanges();
+                _unitOfWork.Category.Update(category);
+                _unitOfWork.Complete();
                 TempData["Update"] = "Item has updated successfully!";
                 return RedirectToAction("Index");
             }
@@ -69,7 +70,7 @@ namespace Shopping.Web.Controllers
             {
                 return NotFound();
             }
-            var categoryIndb = _context.categories.Find(id);
+            var categoryIndb = _unitOfWork.Category.GetFirstOrDefault(x => x.Id == id);
             return View(categoryIndb);
         }
 
@@ -77,14 +78,14 @@ namespace Shopping.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteCategory(int? id)
         {
-            var categoryIndb = _context.categories.Find(id);
+            var categoryIndb = _unitOfWork.Category.GetFirstOrDefault(x => x.Id == id);
 
             if (categoryIndb is null)
             {
                 return NotFound();
             }
-            _context.categories.Remove(categoryIndb);
-            _context.SaveChanges();
+            _unitOfWork.Category.Remove(categoryIndb);
+            _unitOfWork.Complete();
             TempData["Delete"] = "Item has deleted successfully!";
             return RedirectToAction("Index");
         }

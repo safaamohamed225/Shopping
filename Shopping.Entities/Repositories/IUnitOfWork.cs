@@ -10,6 +10,5 @@ namespace Shopping.Entities.Repositories
     {
         ICategoryRepository Category { get; }
         int Complete();
-
     }
 }

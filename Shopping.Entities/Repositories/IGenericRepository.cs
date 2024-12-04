@@ -9,8 +9,8 @@ namespace Shopping.Entities.Repositories
 {
     public interface IGenericRepository<T> where T : class
     {
-        IEnumerable<T> GetAll(Expression<Func<T, bool>> predicate, string? includeWord);
-        T GetFirstOrDefault(Expression<Func<T, bool>> predicate, string? includeWord);
+        IEnumerable<T> GetAll(Expression<Func<T, bool>>? predicate = null, string? includeWord = null);
+        T GetFirstOrDefault(Expression<Func<T, bool>>? predicate = null, string? includeWord = null);
 
         void Add(T entity);
         void Remove(T entity);
