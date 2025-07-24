@@ -20,7 +20,7 @@ A web-based shopping cart application built with ASP.NET Core MVC. The system al
 
 ## 🛠️ Technologies Used
 
-- ASP.NET Core MVC (.NET 8 or .NET 9)  
+- ASP.NET Core MVC (.NET 8)  
 - Entity Framework Core  
 - SQL Server / LocalDB  
 - Razor Views  
