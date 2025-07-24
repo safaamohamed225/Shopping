@@ -29,5 +29,29 @@ A web-based shopping cart application built with ASP.NET Core MVC. The system al
 
 ---
 
-## 🗂️ Project Structure
+🗂️ Project Structure (with Descriptions)
+
+The project follows a layered MVC architecture and is organized into:
+
+Controllers/ – Handle user requests and define the flow of the application logic
+(e.g., ProductController, CartController)
+
+Models/ – Contains entity classes and data models used throughout the system
+(e.g., Product, CartItem)
+
+Views/ – Razor views responsible for rendering the UI, divided into:
+
+Product/ – Pages for product listing and product details
+
+Cart/ – Pages for viewing and managing the shopping cart
+
+Shared/ – Layout and shared components (e.g., _Layout.cshtml, _Navbar.cshtml)
+
+Data/ – Contains ApplicationDbContext and database initialization/seeding logic
+
+wwwroot/ – Stores static files such as CSS, JavaScript, images, and assets
+
+appsettings.json – Configuration file for database connections and other app settings
+
+Program.cs – Entry point of the application; configures services, middleware, and routing
 
