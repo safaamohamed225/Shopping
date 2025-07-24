@@ -55,3 +55,21 @@ A web-based shopping cart application built with ASP.NET Core MVC. The system al
 
 - Program.cs – Entry point of the application; configures services, middleware, and routing
 
+  ---
+
+  🧱 Architecture: N-Tiers Design
+This project is built using the N-Tiers Architecture pattern, which separates the application into distinct layers:
+
+Presentation Layer: Responsible for user interaction (Controllers + Views).
+
+Business Logic Layer: Contains all core business rules and logic (Services).
+
+Data Access Layer: Handles all database interactions and queries (Repositories).
+
+Data Layer: Contains the database context and entity models (EF Core via ApplicationDbContext).
+
+***
+📌 By applying the N-Tiers Architecture, the project achieves better maintainability, testability, and scalability by separating responsibilities across presentation, business, and data layers.
+
+
+
